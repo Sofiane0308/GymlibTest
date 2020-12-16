@@ -6,38 +6,57 @@ from queue import Queue, Empty
 # job queue
 q = Queue()
 
+def addJob(job):
+    if job not in q.queue:
+        q.put(job, False)
+        return True
+    return False
+
+def clearQueue():
+    q.queue.clear()
+
+def getAllJobs():
+    jobs = list(q.queue)
+    jobs.reverse()
+    return jobs
+
+def popJob():
+    return q.get(False)
+    
+    
+    
+    
+
+
 # /jobs
 @api_view(['POST', 'GET', 'DELETE'])
 def jobs(request):
     # add job
     if request.method == 'POST':
         job = request.data['input']
-        if job not in q.queue:
-            q.put(job, False)
-            jobs = list(q.queue)
-            jobs.reverse()
+        added = addJob(job)
+        jobs = getAllJobs()
+        if(added):
+            #job added
             return Response(jobs, status=status.HTTP_201_CREATED)
-        # case where job already exists
-        jobs = list(q.queue)
-        jobs.reverse()
-        return Response(jobs,status=status.HTTP_200_OK)
+        else:
+            # case where job already exists
+            return Response(jobs,status=status.HTTP_200_OK)
+
     # delete job
     elif request.method == 'DELETE':
-        q.queue.clear()
+        clearQueue()
         return Response(status=status.HTTP_204_NO_CONTENT)
     # get all jobs
     elif request.method == 'GET':
-        jobs = list(q.queue)
-        jobs.reverse()
-        return Response(jobs)
+        return Response(getAllJobs())
 
 
 # /job => getjob
 @api_view(['GET'])
 def job(request):
     try:    
-        job = q.get(False)
-        return Response(job)
+        return Response(popJob())
     except Empty:
         # case where queue is empty
         return Response(status=status.HTTP_204_NO_CONTENT)

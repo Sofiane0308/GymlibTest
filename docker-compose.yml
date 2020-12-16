@@ -3,8 +3,8 @@ version: '3'
 services:
   jobqueue:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:3111
+    command: "python3 manage.py runserver 0.0.0.0:${API_PORT-3111}"
     volumes:
       - .:/code
-    ports:
-      - "3111:3111"
+    ports: 
+      - "${API_PORT-3111}:3${API_PORT-3111}"

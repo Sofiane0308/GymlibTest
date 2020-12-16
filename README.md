@@ -17,10 +17,12 @@ Cette API expose plusieurs routes:
 # Instructions
 Pour lancer l'API , allez sur le répertoire racine et lancer les commandes qui correspondent à l'environnement de votre choix:
 ## Sur Docker
+- `export API_PORT=3111`
 - `docker-compose up`
 ## Sur l'OS (python/pip)
 - `pip install -r requirements.txt`
-- `python manage.py runserver 0.0.0.0:3111`
+- `export API_PORT=3111`
+- `python manage.py runserver 0.0.0.0:$API_PORT`
 ### Note: L'API écoute sur le port 3111
 
 # Tests
