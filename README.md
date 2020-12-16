@@ -19,7 +19,7 @@ Pour lancer l'API , allez sur le répertoire racine et lancer les commandes qui 
 ## Sur Docker
 - `export API_PORT=3111`
 - `docker-compose up --build`
-## Sur l'OS (python/pip)
+## Sur l'OS (python3.8/pip)
 - `pip install -r requirements.txt`
 - `export API_PORT=3111`
 - `python manage.py runserver 0.0.0.0:$API_PORT`
@@ -44,5 +44,5 @@ Le projet inclut:
 - Un fichier de configuration .travis.yml pour l'intégration continue sur Travis CI.
 
 # Concernant les tests fournis:
-Dans la 2eme partie, on post la liste d'entiers sous Promise.all() qui bloque jusqu'à reception de toutes les réponses avant de verifier le resultat, sauf que les requêtes peuvent arriver en désordre à l'API ce qui ne donne pas le résulats attendu.
+Dans la 2eme partie, on post la liste d'entiers sous Promise.all() qui bloque jusqu'à reception de toutes les réponses avant de verifier le resultat, sauf que les requêtes peuvent arriver en désordre à l'API (Requêtes asynchrones sur le réseau) ce qui ne donne pas le résulats dans l'ordre attendu.
 Je me suis permis donc de changer un petit peu cette partie en mettant l'appel fetch() dans une boucle en bloquant a chaque appel.
