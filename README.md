@@ -18,7 +18,7 @@ Cette API expose plusieurs routes:
 Pour lancer l'API , allez sur le répertoire racine et lancer les commandes qui correspondent à l'environnement de votre choix:
 ## Sur Docker
 - `export API_PORT=3111`
-- `docker-compose up`
+- `docker-compose up --build`
 ## Sur l'OS (python/pip)
 - `pip install -r requirements.txt`
 - `export API_PORT=3111`
@@ -28,12 +28,14 @@ Pour lancer l'API , allez sur le répertoire racine et lancer les commandes qui 
 # Tests
 ## Tests unitaires intégrés (python/django)
 
-    python manage.py test
+-    `python manage.py test`
  
 ## Test fournis (javascript/node)
 Afin de tester l'API allez sur le répertoire /test et lancez la commande suivante (Nodejs):
 
-    npm install && npm run test`
+-    `npm install`
+-    `export API_URL=http://localhost:3111`
+-    `npm run test`
 
 # Notes
 Le projet inclut:
