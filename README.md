@@ -38,3 +38,7 @@ Le projet inclut:
 - Des tests unitaires dans */jobqueue/tests.py*.
 - Un *Dockerfile* et un fichier *docker-compose.yml* pour le build et le run sur Docker.
 - Un fichier de configuration .travis.yml pour l'intégration continue sur Travis CI.
+
+# Concernant les tests fournis:
+Dans la 2eme partie, on post la liste d'entiers sous Promise.all() qui bloque jusqu'à reception de toutes les réponses avant de verifier le resultat, sauf que les requêtes peuvent arriver en désordre à l'API ce qui ne donne pas le résulats attendu.
+Je me suis permis donc de changer un petit peu cette partie en mettant l'appel fetch() dans une boucle en bloquant a chaque appel.
